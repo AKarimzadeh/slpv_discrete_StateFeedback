@@ -1,9 +1,4 @@
-function [Gamopt, gamVec, Kopt] = SLPV_SF_discrete_yalmip(Gasym, Theta1, Theta2, ...
-    ThetaT, ThetaPlusT, Theta2T, Theta2PlusT, REGID, F_theta, FthetaNum, ...
-    SwLogic, mu, lambda, MultiLyapunov, solvername)
-
-% Discrete-time Switching LPV State-Feedback with Separate Lyapunov
-% YALMIP version (equivalent to the original LMI Lab code)
+function [Gamopt, gamVec, Kopt] = SLPV_SF_discrete_yalmip(Gasym, Theta1, Theta2, ThetaT, ThetaPlusT, Theta2T, Theta2PlusT, REGID, F_theta, FthetaNum, SwLogic, mu, lambda, MultiLyapunov, solvername)
 
 if nargin < 15
     solvername = 'mosek';   % default
@@ -96,7 +91,6 @@ for r = 1:regnum
             end
             
             % ----- Local performance LMI (dilated discrete) -----
-            % Equivalent to H_analysis / H_synthesis in the paper
             vu = 1;   % for performance
             if SwLogic == 2 && ~MultiLyapunov
                 vu = 1 - lambda;
